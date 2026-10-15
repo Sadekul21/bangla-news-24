@@ -24,6 +24,14 @@ const SignInPage = () => {
         }
   
      }
+
+    const handleGoogleSignIn=async()=>{
+   const data = await authClient.signIn.social({
+    provider: "google",
+          });
+          console.log(data)
+     };
+
     return (
          <div className="flex  flex-col items-center justify-center mt-5">
         <h2 className="text-2xl font-bold text-red-700">সাইন ইন </h2>
@@ -40,6 +48,7 @@ const SignInPage = () => {
           <button type="submit" className="btn text-white bg-red-600 mt-4">সাইন ইন করুন</button>
         </fieldset>
       </form>
+      <button onClick={handleGoogleSignIn} className="btn">Sign in with Google</button>
     </div>
     );
 };
