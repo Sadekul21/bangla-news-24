@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import Navlinks from "./Navlinks";
+import UserInfo from "./UserInfo";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-BD", {
@@ -32,15 +33,7 @@ const Header = () => {
       </div>
 
       {/* Sign In + Sign Up - Right */}
-      <div className="absolute right-0 flex gap-2">
-        <button className="btn">
-          সাইন ইন
-        </button>
-
-        <button className="btn btn-error bg-red-800 text-white">
-          সাইন আপ
-        </button>
-      </div>
+         <UserInfo/>
         <Navlinks/>
     </header>
   );
