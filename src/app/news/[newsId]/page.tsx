@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 
 
 const NewsDetails =async ({params}:{params:
@@ -6,7 +7,10 @@ const NewsDetails =async ({params}:{params:
         const res= await fetch(`https://news-api-v2.vercel.app/api/article/${newsId}`)
         const data= await res.json()
         const news=data.data 
-        console.log(news)
+        if(!news){
+            notFound()
+        }
+
     return (
         <div>
             <h1>{news.title}</h1>

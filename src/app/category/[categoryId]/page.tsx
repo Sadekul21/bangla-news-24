@@ -1,5 +1,5 @@
-
 import NewsCard from "@/components/NewsCard";
+import { notFound } from "next/navigation";
 
 interface News {
   id: string;
@@ -21,17 +21,21 @@ const CategoryNews = async ({
     `https://news-api-v2.vercel.app/api/category/${categoryId}`
   );
 
+  if (res.status === 404) {
+    notFound();
+  }
+
   if (!res.ok) {
     return <h2>Failed to load category news</h2>;
   }
 
   const data = await res.json();
 
-  console.log("Category API Response:", data);
+  const categoryNews: News[] = Array.isArray(data.data) ? data.data : [];
 
-  const categoryNews: News[] = Array.isArray(data.data)
-    ? data.data
-    : [];
+  if (categoryNews.length === 0) {
+    notFound();
+  }
 
   return (
     <div>
