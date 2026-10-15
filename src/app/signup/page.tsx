@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 
 const SignUpPage = () => {
@@ -13,13 +14,15 @@ const SignUpPage = () => {
         ...user,
         callbackURL:"/"
       })
-      if(data){
-        console.log(data);
-        redirect("/")
-      }
-      if(error){
-        console.log(error)
-      }
+     if(data){
+          toast.success("Sign In successful")
+          console.log(data);
+          redirect("/")
+        }
+        if(error){
+          toast.error("Something went wrong")
+          console.log(error)
+        }
 
    }
 
